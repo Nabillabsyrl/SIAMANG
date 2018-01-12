@@ -1,0 +1,161 @@
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
+class Lokasi extends CI_Controller
+{
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Lokasi_model');
+        $this->load->library('form_validation');
+    }
+
+    public function index()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+        
+        if ($q <> '') {
+            $config['base_url'] = base_url() . 'lokasi/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'lokasi/index.html?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = base_url() . 'lokasi/index.html';
+            $config['first_url'] = base_url() . 'lokasi/index.html';
+        }
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Lokasi_model->total_rows($q);
+        $lokasi = $this->Lokasi_model->get_limit_data($config['per_page'], $start, $q);
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+
+        $data = array(
+            'lokasi_data' => $lokasi,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
+        );
+        $data['main_view'] = 'lokasi/lokasi_list';
+        $this->load->view('template', $data);
+       /* $this->load->view('lokasi/lokasi_list', $data);*/
+    }
+
+    public function read($id) 
+    {
+        $row = $this->Lokasi_model->get_by_id($id);
+        if ($row) {
+            $data = array(
+		'id_lokasi' => $row->id_lokasi,
+		'nama_lokasi' => $row->nama_lokasi,
+	    );
+
+            $this->load->view('lokasi/lokasi_read', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('lokasi'));
+        }
+    }
+
+    public function create() 
+    {
+        $data = array(
+            'button' => 'Create',
+            'action' => site_url('lokasi/create_action'),
+	    'id_lokasi' => set_value('id_lokasi'),
+	    'nama_lokasi' => set_value('nama_lokasi'),
+	);
+        $data['main_view'] = 'lokasi/lokasi_form';
+            $this->load->view('template', $data);
+        /*$this->load->view('lokasi/lokasi_form', $data);*/
+    }
+    
+    public function create_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->create();
+        } else {
+            $data = array(
+        'id_lokasi' =>$this->input->post('id_lokasi',TRUE),
+		'nama_lokasi' => $this->input->post('nama_lokasi',TRUE),
+	    );
+
+            $this->Lokasi_model->insert($data);
+            $this->session->set_flashdata('message', 'Create Record Success');
+            redirect(site_url('lokasi'));
+        }
+    }
+    
+    public function update($id) 
+    {
+        $row = $this->Lokasi_model->get_by_id($id);
+
+        if ($row) {
+            $data = array(
+                'button' => 'Update',
+                'action' => site_url('lokasi/update_action'),
+		'id_lokasi' => set_value('id_lokasi', $row->id_lokasi),
+		'nama_lokasi' => set_value('nama_lokasi', $row->nama_lokasi),
+	    );
+            $data['main_view'] = 'lokasi/lokasi_form';
+            $this->load->view('template', $data);
+            /*$this->load->view('lokasi/lokasi_form', $data);*/
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('lokasi'));
+        }
+    }
+    
+    public function update_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+           /* $this->update($this->input->post('id_lokasi', TRUE));*/
+        } else {
+            $data = array(
+        'id_lokasi' =>$this->input->post('id_lokasi',TRUE),
+		'nama_lokasi' => $this->input->post('nama_lokasi',TRUE),
+	    );
+
+            
+            $this->session->set_flashdata('message', 'Update Record Success');
+            redirect(site_url('lokasi'));
+        }
+    }
+    
+    public function delete($id) 
+    {
+        $row = $this->Lokasi_model->get_by_id($id);
+
+        if ($row) {
+            $this->Lokasi_model->delete($id);
+            $this->session->set_flashdata('message', 'Delete Record Success');
+            redirect(site_url('lokasi'));
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('lokasi'));
+        }
+    }
+
+    public function _rules() 
+    {
+	$this->form_validation->set_rules('nama_lokasi', 'nama lokasi', 'trim|required');
+
+	$this->form_validation->set_rules('id_lokasi', 'id_lokasi', 'trim');
+	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
+
+}
+
+/* End of file Lokasi.php */
+/* Location: ./application/controllers/Lokasi.php */
+/* Please DO NOT modify this information : */
+/* Generated by Harviacode Codeigniter CRUD Generator 2018-01-04 03:23:56 */
+/* http://harviacode.com */
