@@ -50,13 +50,13 @@
         <!-- inbox dropdown start-->
         <!-- inbox dropdown end -->
         <!-- notification dropdown start-->
-        <li id="header_notification_bar" class="dropdown">
+        <li id="header_inbox_bar" class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
                 <i class="fa fa-bell-o"></i>
-                <span class="badge bg-warning"><?php echo $notifikasi_count; ?></span>
+                <span class="badge bg-important"><?php echo $notifikasi_count; ?></span>
             </a>
-            <ul class="dropdown-menu extended notification">
+            <ul class="dropdown-menu extended inbox">
                 <li>
                     <p>Notifications</p>
                 </li>
@@ -66,7 +66,8 @@
                             <li>
                                 <a href="<?php echo $n->target_link; ?>" class="alert alert-info clearfix">
                                     <div class="noti-info">
-                                        <span><?php echo $n->title; ?></span>
+                                     <span class="subject">
+                                        <span class="from"><?php echo $n->title; ?></span>
                                     </div>
                                 </a>
                             </li>
@@ -75,6 +76,34 @@
                 ?>
             </ul>
         </li>   
+
+      <!--   <li id="header_inbox_bar" class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+                <i class="fa fa-envelope-o"></i>
+                <span class="badge bg-important"><?php echo $notifikasi_count; ?></span>
+            </a>
+            <ul class="dropdown-menu extended inbox">
+                <li>
+                    <p>Notifications</p>
+                </li>
+                <?php 
+                    foreach($notif as $n){
+                        ?>   
+                            <li>
+                                <a href="<?php echo base_url();?>index.php/admin/data_email" class="alert alert-info clearfix">
+                                     <span class="alert-icon"><i class="fa fa-commenting"></i></span>
+                                    <div class="noti-info">
+                                     <span class="subject">
+                                        <span class="from"><?php echo $n->email; ?></span>
+                                    </div>
+                                </a>
+                            </li>
+                        <?php
+                    }
+                ?>
+            </ul>
+        </li>  --> 
         <!-- notification dropdown end -->
     </ul>
     <!--  notification end -->
@@ -121,15 +150,43 @@
                 
                 <li class="sub-menu">
                     <a href="<?php echo base_url() ;?>index.php/admin/data_acara">
-                        <i class="fa fa-camera"></i>
-                        <span>Tambah Event</span>
+                        <i class="fa fa-list-ul"></i>
+                        <span>List Event</span>
                     </a>
                 </li>
                  
                 <li class="sub-menu">
                     <a href="<?php echo base_url() ;?>index.php/admin/data_komentar">
-                        <i class="fa fa-download"></i>
-                        <span>Lihat Komentar</span>
+                        <i class="fa fa-commenting"></i>
+                        <span>Kritik dan Saran</span>
+                    </a>
+                </li>
+
+                 <li class="sub-menu">
+                    <a href="<?php echo base_url() ;?>index.php/admin/data_email">
+                        <i class="fa fa-check-circle"></i>
+                        <span>Subscriber</span>
+                    </a>
+                </li>
+
+                 <li class="sub-menu">
+                    <a href="<?php echo base_url() ;?>index.php/admin/data_rating">
+                        <i class="fa fa-check-circle"></i>
+                        <span>Data Komentar Acara</span>
+                    </a>
+                </li>
+
+                 <li class="sub-menu">
+                    <a href="<?php echo base_url() ;?>index.php/admin/data_transaksi">
+                        <i class="fa fa-user-plus"></i>
+                        <span>Data Transaksi </span>
+                    </a>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="<?php echo base_url() ;?>index.php/admin/data_admin">
+                        <i class="fa fa-user-plus"></i>
+                        <span>Lihat Admin</span>
                     </a>
                 </li>
               </div>
@@ -151,7 +208,7 @@
 
 <!--main content end-->
 </section>
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="<?php echo base_url();?>assets/js/bootstrap.js"></script>
 <script src="<?php echo base_url();?>assets/js/jquery.dcjqaccordion.2.7.js"></script>
 <script src="<?php echo base_url();?>assets/js/scripts.js"></script>
@@ -170,7 +227,7 @@
   $(function (){
     $("#example1").DataTable();
     $('#datetimepicker11').datepicker({
-                daysOfWeekDisabled: [0, 6],
+               /* daysOfWeekDisabled: [0, 6],*/
                 format: 'yyyy/mm/dd'
     });
      $('#timepicker').timepicker({

@@ -51,10 +51,6 @@ class Users extends CI_Controller
 		'id' => $row->id,
 		'username' => $row->username,
 		'password' => $row->password,
-		'level' => $row->level,
-		'created_at' => $row->created_at,
-		'updated_at' => $row->updated_at,
-		'remember_token' => $row->remember_token,
 	    );
             $this->load->view('users/users_read', $data);
         } else {
@@ -71,10 +67,7 @@ class Users extends CI_Controller
 	    'id' => set_value('id'),
 	    'username' => set_value('username'),
 	    'password' => set_value('password'),
-	    'level' => set_value('level'),
-	    'created_at' => set_value('created_at'),
-	    'updated_at' => set_value('updated_at'),
-	    'remember_token' => set_value('remember_token'),
+        'gambar' => set_value('gambar'),
 	);
         $this->load->view('users/users_form', $data);
     }
@@ -89,10 +82,7 @@ class Users extends CI_Controller
             $data = array(
 		'username' => $this->input->post('username',TRUE),
 		'password' => $this->input->post('password',TRUE),
-		'level' => $this->input->post('level',TRUE),
-		'created_at' => $this->input->post('created_at',TRUE),
-		'updated_at' => $this->input->post('updated_at',TRUE),
-		'remember_token' => $this->input->post('remember_token',TRUE),
+        'gambar' => $this->input->post('gambar',TRUE),
 	    );
 
             $this->Users_model->insert($data);
@@ -112,10 +102,7 @@ class Users extends CI_Controller
 		'id' => set_value('id', $row->id),
 		'username' => set_value('username', $row->username),
 		'password' => set_value('password', $row->password),
-		'level' => set_value('level', $row->level),
-		'created_at' => set_value('created_at', $row->created_at),
-		'updated_at' => set_value('updated_at', $row->updated_at),
-		'remember_token' => set_value('remember_token', $row->remember_token),
+        'gambar' => set_value('gambar', $row->gambar),
 	    );
             $this->load->view('users/users_form', $data);
         } else {
@@ -134,10 +121,6 @@ class Users extends CI_Controller
             $data = array(
 		'username' => $this->input->post('username',TRUE),
 		'password' => $this->input->post('password',TRUE),
-		'level' => $this->input->post('level',TRUE),
-		'created_at' => $this->input->post('created_at',TRUE),
-		'updated_at' => $this->input->post('updated_at',TRUE),
-		'remember_token' => $this->input->post('remember_token',TRUE),
 	    );
 
             $this->Users_model->update($this->input->post('id', TRUE), $data);
@@ -164,10 +147,6 @@ class Users extends CI_Controller
     {
 	$this->form_validation->set_rules('username', 'username', 'trim|required');
 	$this->form_validation->set_rules('password', 'password', 'trim|required');
-	$this->form_validation->set_rules('level', 'level', 'trim|required');
-	$this->form_validation->set_rules('created_at', 'created at', 'trim|required');
-	$this->form_validation->set_rules('updated_at', 'updated at', 'trim|required');
-	$this->form_validation->set_rules('remember_token', 'remember token', 'trim|required');
 
 	$this->form_validation->set_rules('id', 'id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

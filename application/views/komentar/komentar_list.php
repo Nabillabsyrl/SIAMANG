@@ -3,7 +3,7 @@
       <div class="table-agile-info">
         <div class="panel panel-default">
           <div class="panel-heading">
-           DATA EVENT
+           DATA KOMENTAR
           </div>
           <div class="row">
             <div class="col-xs-12">
@@ -41,7 +41,7 @@
                                 <td>'.$data->email.'</td>                                
                                 <td>'.$data->komentar.'</td>
                                 <td>
-                                    <a href="#" class="btn btn-info">Lihat</a>
+                                    
                                     <a href="'.base_url().'index.php/komentar/delete/'.$data->id_komentar.'" class="btn btn-danger">Hapus</a>
                                 </td>
                             </tr>

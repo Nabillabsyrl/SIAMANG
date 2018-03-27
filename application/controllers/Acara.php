@@ -10,6 +10,7 @@ class Acara extends CI_Controller
         parent::__construct();
         $this->load->model('Acara_model');
         $this->load->model('admin_model');
+         $this->load->model('komentar_model');
         $this->load->library('form_validation');
         $this->notifikasi = $this->admin_model->cek_notif();
 
@@ -28,32 +29,24 @@ class Acara extends CI_Controller
     }
 
    
-    public function data_acara() {
+   public function data_acara() {
         if ($this->session->userdata('logged_in') == TRUE) {
             $data['main_view'] = 'acara/acara_list';
             $data['acara'] = $this->Acara_model->get_data_acara();
+            $data['notif'] = $this->komentar_model->get_data_notif();
+            $this->komentar_model->setDibaca();
             $data['notifikasi'] = $this->notifikasi;
             $data['notifikasi_count'] = $this->notifikasiCount;
             $this->load->view('template', $data);
         }else{
             $this->load->view('login');
         }
-           
     }
 
     
 
     public function simpan() 
     {
-    
-        /*$this->form_validation->set_rules('nama_acara', 'nama acara', 'trim|required');
-        $this->form_validation->set_rules('tgl_acara', 'tgl acara', 'trim');
-        $this->form_validation->set_rules('alamat_acara', 'alamat acara', 'trim|required');
-        $this->form_validation->set_rules('waktu_acara', 'waktu acara', 'trim|required');
-        $this->form_validation->set_rules('gambar', 'gambar', 'trim');
-        $this->form_validation->set_rules('nama_genre', 'nama_genre', 'trim|required');
-        $this->form_validation->set_rules('id_acara', 'id_acara', 'trim');*/
-
                 $data['notifikasi'] = $this->notifikasi;
                 $data['notifikasi_count'] = $this->notifikasiCount;
                 $config['upload_path'] = './uploads/';
@@ -92,6 +85,8 @@ class Acara extends CI_Controller
 
         if ($row) {
             $data = array(
+                 'button' => 'Update',
+                'action' => site_url('acara/update_action'),
 		'id_acara' => set_value('id_acara', $row->id_acara),
 		'nama_acara' => set_value('nama_acara', $row->nama_acara),
 		'tgl_acara' => set_value('tgl_acara', $row->tgl_acara),
@@ -112,28 +107,25 @@ class Acara extends CI_Controller
     
     public function update_action() 
     {
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('id_acara', TRUE));
-        } else {
-            $data = array(
-        'nama_acara' => $this->input->post('nama_acara',TRUE),
-        'tgl_acara' => $this->input->post('tgl_acara',TRUE),
-        'alamat_acara' => $this->input->post('alamat_acara',TRUE),
-        'waktu_acara' => $this->input->post('waktu_acara',TRUE),
-        'gambar' => $this->input->post('gambar',TRUE),
-        'nama_genre' => $this->input->post('nama_genre',TRUE),
-        );
-
-            $this->Acara_model->update($this->input->post('id_acara', TRUE), $data);
-            $data['notifikasi'] = $this->notifikasi;
-            $data['notifikasi_count'] = $this->notifikasiCount;
-            $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('admin/data_acara'));
+        if ($this->session->userdata('logged_in') == TRUE){
+            $id_acara = $this->uri->segment(3);
+                    if ($this->Acara_model->update_acara($id_acara) == TRUE) {
+                          $this->session->set_flashdata('message', 'Update Berhasil');
+                          redirect(site_url('admin/data_acara'));
+                            # code...
+                    } else{
+                         $this->session->set_flashdata('message', 'gagal');
+                        redirect(site_url('admin/data_acara'));
+                    }
+                    # code...
+                
+            
         }
-        
-      
+
+                # code...
     }
+
+      
     
     public function delete($id) 
     {

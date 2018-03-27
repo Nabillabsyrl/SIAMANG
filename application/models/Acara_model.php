@@ -32,10 +32,28 @@ class Acara_model extends CI_Model
     return $this->db->delete('acara', array('id_acara'=>$id));
   }
 
-     function update($id, $data)
+     function update_acara($id_acara)
     {
-        $this->db->where($this->id, $id);
-        $this->db->update($this->table, $data);
+       /* $this->db->where($this->id, $id);
+        $this->db->update($this->table, $data);*/
+        $data = array(
+        'nama_acara' => $this->input->post('nama_acara'),
+        'tgl_acara' => $this->input->post('tgl_acara'),
+        'alamat_acara' => $this->input->post('alamat_acara'),
+        'waktu_acara' => $this->input->post('waktu_acara'),
+        'nama_genre' => $this->input->post('nama_genre'),
+
+        );
+
+        $this->db->where('id_acara', $id_acara)
+                 ->update('acara', $data);
+
+        if ($this->db->affected_rows() > 0) 
+        {
+        return TRUE;
+        }else{
+        return FALSE;
+        }
     }
 
 
@@ -70,8 +88,29 @@ class Acara_model extends CI_Model
 
 
                 //konfigurasi upload file
-               
-    
+  public function getPriceRegular($id){
+    return $this->db->where('harga.jenis_tiket', 0)
+                    ->where('acara.id_acara', $id)
+                    ->join('acara', 'acara.id_acara = harga.id_acara', 'left')
+                    ->get('harga')
+                    ->result();
+  }
+
+    public function getPriceVIP($id){
+    return $this->db->where('harga.jenis_tiket', 1)
+                    ->where('acara.id_acara', $id)
+                    ->join('acara', 'acara.id_acara = harga.id_acara', 'left')
+                    ->get('harga')
+                    ->result();
+  }
+
+    public function getPriceVVIP($id){
+    return $this->db->where('harga.jenis_tiket', 2)
+                    ->where('acara.id_acara', $id)
+                    ->join('acara', 'acara.id_acara = harga.id_acara', 'left')
+                    ->get('harga')
+                    ->result();
+  }
 
   
 }

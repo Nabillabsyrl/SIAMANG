@@ -44,15 +44,8 @@
         <table class="table table-bordered" style="margin-bottom: 10px">
             <tr>
                 <th>No</th>
-		<th>Nama</th>
-		<th>Nik</th>
-		<th>Role</th>
 		<th>Username</th>
 		<th>Password</th>
-		<th>Unit</th>
-		<th>Remember Token</th>
-		<th>Created At</th>
-		<th>Updated At</th>
 		<th>Action</th>
             </tr><?php
             foreach ($user_data as $user)
@@ -60,15 +53,8 @@
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $user->nama ?></td>
-			<td><?php echo $user->nik ?></td>
-			<td><?php echo $user->role ?></td>
 			<td><?php echo $user->username ?></td>
 			<td><?php echo $user->password ?></td>
-			<td><?php echo $user->unit ?></td>
-			<td><?php echo $user->remember_token ?></td>
-			<td><?php echo $user->created_at ?></td>
-			<td><?php echo $user->updated_at ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('user/read/'.$user->id),'Read'); 

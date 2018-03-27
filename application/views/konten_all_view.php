@@ -15,17 +15,60 @@
                                     </span>
                                 </div>
                                 <div class="project-info">
+                                    <form action="<?php echo base_url();?>index.php/price/beli/<?php echo $a->id_acara; ?>" method="post">
+                                        <div class="col col-md-6">
+                                            <input style="float: right; font-size:20px;" type="submit" value="Buy Ticket?" name="submit" class="button button-ps">
+                                        </div>
+                                    </form>
+
                                     <div>
-                                        <span>Nama</span><?php echo $a->nama_acara; ?></div>
+                                        <span>Nama</span><?php echo $a->nama_acara; ?>
+                                    </div>
                                     <div>
                                         <span>Tanggal</span><?php echo $a->tgl_acara; ?></div>
                                     <div>
                                         <span>Waktu</span><?php echo $a->waktu_acara; ?></div>
                                     <div>
                                         <span>Alamat</span><?php echo $a->alamat_acara; ?></div>
-                                </div>
-                                <p>Believe in yourself! Have faith in your abilities! Without a humble but reasonable confidence in your own powers you cannot be successful or happy.</p>
+                                    </div>
+                               
                             </div>
+
+                            <div class="container">
+                        
+                                <h3>Berikan Komentarmu!</h3>
+                                <?php $message = $this->session->flashdata('message');
+                        if (!empty($message)) 
+                            echo "<div class='alert alert-info'>$message</div>"
+                        ?>
+                                
+                                <form id="contact-form" method="post" action="<?php echo base_url(); ?>index.php/komentar/rateComment">
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <input class="span4" type="text" id="nama" name="nama" placeholder="* Your name..." required />
+                                            <div class="error left-align" id="err-name">Please enter name.</div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <input class="span4" type="email" name="email" id="email" placeholder="* Your email..." required/>
+                                            <div class="error left-align" id="err-email">Please enter valid email adress.</div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <textarea class="span4" name="komentar" id="komentar" placeholder="* Comments..." required></textarea>
+                                            <div class="error left-align" id="err-comment">Please enter your comment.</div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <input type="submit" value="Send Message" name="submit" class="message-btn"/>
+                                        </div>
+                                    </div>
+                                    <input type="text" name="idAcara" value="<?php echo $a->id_acara; ?>" style="visibility: hidden;">
+                                </form>
+                    </div>
                         </div>
                     </div>
                     <?php }?>
@@ -46,3 +89,5 @@
                         <?php }?>
                     </ul>
                 </div>
+            </div>
+        </div>

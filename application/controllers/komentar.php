@@ -41,14 +41,13 @@ class Komentar extends CI_Controller
             		redirect(site_url('admin/homey#clients'));
 				}
         }
-        
-}
+    }
 
- public function _rules() 
-    {
-	$this->form_validation->set_rules('nama', 'nama', 'trim|required');
-	$this->form_validation->set_rules('email', 'email', 'trim');
-	$this->form_validation->set_rules('komentar', 'komentar', 'trim|required');
-	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    public function rateComment(){
+        if ($this->Komentar_model->saveRateComment() == TRUE) {
+            redirect(site_url('admin/homey#documentation'));
+        } else {
+            redirect(site_url('admin/homey#documentation'));
+        }
     }
 }

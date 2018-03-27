@@ -34,10 +34,6 @@ class Users_model extends CI_Model
         $this->db->like('id', $q);
 	$this->db->or_like('username', $q);
 	$this->db->or_like('password', $q);
-	$this->db->or_like('level', $q);
-	$this->db->or_like('created_at', $q);
-	$this->db->or_like('updated_at', $q);
-	$this->db->or_like('remember_token', $q);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -48,10 +44,6 @@ class Users_model extends CI_Model
         $this->db->like('id', $q);
 	$this->db->or_like('username', $q);
 	$this->db->or_like('password', $q);
-	$this->db->or_like('level', $q);
-	$this->db->or_like('created_at', $q);
-	$this->db->or_like('updated_at', $q);
-	$this->db->or_like('remember_token', $q);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }

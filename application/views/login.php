@@ -1,43 +1,29 @@
-
 <!DOCTYPE html>
-<html style="background-image: url(<?php echo base_url();?>assets/css/4.jpg)">
 <head>
-  <meta charset="UTF-8">
-  <title>Flat Login Form</title>
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-  <link rel="stylesheet" type="text/css" href="">
-  
-
-  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900'>
-<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
-<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-
-      <link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css">
-
+<title>Visitors an Admin Panel Category Bootstrap Responsive Website Template | Login :: w3layouts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- bootstrap-css -->
+<link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap.min.css" >
+<!-- //bootstrap-css -->
+<!-- Custom CSS -->
+<link href="<?php echo base_url();?>assets/css/style.css" rel='stylesheet' type='text/css' />
+<link href="<?php echo base_url();?>assets/css/style-responsive.css" rel="stylesheet"/>
+<!-- font CSS -->
+<link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<!-- font-awesome icons -->
+<link rel="stylesheet" href="<?php echo base_url();?>assets/css/font.css" type="text/css"/>
+<link href="<?php echo base_url();?>assets/css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons -->
+<script src="<?php echo base_url();?>assets/js/jquery2.0.3.min.js"></script>
 </head>
-
-<body style="background-image: url(<?php echo base_url();?>assets/css/4.jpg)">
-  
-<div class="container">
-  <div class="info">
-    <h1 style="margin: 0 0 15px;
-    margin-bottom: 30px;
-    padding-bottom: px;
-    padding: 2;
-    font-size: 60px;
-    font-weight: 200;
-    FONT-FAMILY: fantasy;"> LOGIN PAGE </h1>
+<body>
+<div class="log-w3">
+<div class="w3layouts-main">
+  <h2>Sign In Now</h2>
 
    <!-- <span>Made with <i class="fa fa-heart"></i> by <a href="http://andytran.me">Billa</a></span> -->
-   <span> </span>
-  </div>
-</div>          
-<div class="form">
-
-
-  <div class="thumbnail"><img src="<?php echo base_url();?>assets/logofix.png"/></div>
-           <div class="alert"> 
 
             <?php
                     if (!empty($notif))
@@ -47,36 +33,22 @@
                     echo '</div>';
                     }
                     ?>
-</div>
-  <form role="form" method="post" class="register-form" action="<?php echo base_url();?>index.php/admin/login">
-
-    <!--<input type="text" placeholder="name" class="input_with_text"/>
-    <input type="password" placeholder="password" class="input_with_text"/>
-    <input type="text" placeholder="email address" class="input_with_text"/>
-    <button>create</button>-->
-
-<div class="footer"></div>
-    <p class="message">Already registered? <a href="#">Sign In</a></p>
-  </form>
   <form class="login-form" role="form" method="post" action="<?php echo base_url();?>index.php/admin/login">
     
-    <input type="text"  class="form-control" placeholder="Username" name="username" class="input_with_text" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar">
-                    </span>
-                </span>
-    <input type="password" class="form-control" placeholder="Password" name="password" class="input_with_text" />
-
-    <button type="submit" name="submit" class="button">Login</button>
-    <p class="message">Not registered? <a href="#">Create an account</a></p>
+  <input type="text" name="username" class="ggg" name="Email" placeholder="USERNAME" required="">
+      <input type="password" name="password" class="ggg" name="Password" placeholder="PASSWORD" required="">
+      <span><input type="checkbox" />Remember Me</span>
+        <div class="clearfix"></div>
+        <input type="submit" value="Sign In" name="login">
   </form>
 </div>
 </div>
-
-
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-    <script src="<?php echo base_url();?>assets/js/index.js"></script>
-
+<script src="<?php echo base_url();?>assets/js/bootstrap.js"></script>
+<script src="<?php echo base_url();?>assets/js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="<?php echo base_url();?>assets/js/scripts.js"></script>
+<script src="<?php echo base_url();?>assets/js/jquery.slimscroll.js"></script>
+<script src="<?php echo base_url();?>assets/js/jquery.nicescroll.js"></script>
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
+<script src="<?php echo base_url();?>assets/js/jquery.scrollTo.js"></script>
 </body>
 </html>

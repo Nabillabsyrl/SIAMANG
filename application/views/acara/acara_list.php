@@ -34,17 +34,19 @@
     <th>Genre Id</th>
 		<th>Gambar</th>
 		<th>Action</th>
+    </tr> 
     </thead>
-            </tr> 
+    <tbody>
              <?php 
-                            $no = 1;
+                            $start = 1;
                             foreach($acara as $data){
+
+
                                 echo '
-                        </thead>
-                        <tbody>
-                            <tr class="odd gradeX">
+                     
+                            <tr>
                                
-                                <td>'.$data->id_acara.'</td>
+                               <td>'.$start++.'</td>
                                 <td>'.$data->nama_acara.'</td>
                                 <td>'.$data->tgl_acara.'</td>                                
                                 <td>'.$data->alamat_acara.'</td>
@@ -59,7 +61,7 @@
                            
                     
                             ';
-                            $no++;
+                            
                         }
                         ?>
        </tbody>

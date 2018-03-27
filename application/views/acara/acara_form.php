@@ -15,13 +15,13 @@
                     <div class="panel-body">
                     <div class="row">
 
-        <form role="form" enctype="multipart/form-data" action="<?php echo base_url(); ?>index.php/acara/simpan" " method="post" id="select">
+        <form role="form" enctype="multipart/form-data" action="<?php echo base_url(); ?>index.php/acara/simpan" method="post" id="select">
        </div>
        
        <div class="form-group">
             <label for="varchar"> Tanggal</label>
             <div class='input-group date' id='datetimepicker11'>
-                <input type='text' class="form-control input-lg" name="tgl_acara" placeholder="Tanggal" />
+                <input type='text' class="form-control input-lg" id="tgl_acara" name="tgl_acara" placeholder="Tanggal" required="" />
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar">
                     </span>
@@ -30,17 +30,17 @@
         </div>
           <div class="form-group">
             <label for="varchar">Nama Acara</label>
-            <input type="text" class="form-control" name="nama_acara" id="nama_acara" placeholder="Nama Acara"  />
+            <input type="text" class="form-control" name="nama_acara" id="nama_acara" placeholder="Nama Acara" required="" />
         </div>
       
 	    <div class="form-group">
             <label for="alamat_acara">Alamat Acara</label>
-            <textarea class="form-control" rows="3" name="alamat_acara" id="alamat_acara" placeholder="Alamat Acara"></textarea>
+            <textarea class="form-control" rows="3" name="alamat_acara" id="alamat_acara" placeholder="Alamat Acara" required=""></textarea>
         </div>
 	    <div class="form-group">
             <label for="varchar">Waktu Acara </label>
             <div class='input-group time' id='timepicker'>
-                <input type='time' class="form-control input-lg" name="waktu_acara" placeholder="Waktu"/>
+                <input type='time' class="form-control input-lg" id="waktu_acara" name="waktu_acara" placeholder="Waktu"/ required="">
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-time">
                     </span>
@@ -50,11 +50,11 @@
 	   
 	    <div class="form-group">
             <label for="gambar">Gambar</label>
-            <input type="file" id="gambar" name="gambar">
+            <input type="file" id="gambar" name="gambar" required="">
         </div>
 	    <div class="form-group">
             <label for="varchar">Genre Id </label>
-            <select class="form-control" name="nama_genre" id="nama_genre">
+            <select class="form-control" name="nama_genre" id="nama_genre" required="">
                 <option value="pop"> Pop </option>
                 <option value="jazz"> Jazz </option>
                 <option value="akustik"> Akustik </option>

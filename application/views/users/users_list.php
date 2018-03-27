@@ -46,10 +46,7 @@
                 <th>No</th>
 		<th>Username</th>
 		<th>Password</th>
-		<th>Level</th>
-		<th>Created At</th>
-		<th>Updated At</th>
-		<th>Remember Token</th>
+        <th>Gambar</th>
 		<th>Action</th>
             </tr><?php
             foreach ($users_data as $users)
@@ -59,10 +56,7 @@
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $users->username ?></td>
 			<td><?php echo $users->password ?></td>
-			<td><?php echo $users->level ?></td>
-			<td><?php echo $users->created_at ?></td>
-			<td><?php echo $users->updated_at ?></td>
-			<td><?php echo $users->remember_token ?></td>
+            <td><?php echo $users->gambar ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('users/read/'.$users->id),'Read'); 
